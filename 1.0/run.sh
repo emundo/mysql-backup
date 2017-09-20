@@ -117,7 +117,7 @@ elif [ -n "${INIT_RESTORE_LATEST}" ]; then
 		ls -d -1 /backup/${MYSQL_DB}/* | tail -1 | xargs /restore.sh
 fi
 
-echo "${CRON_TIME} export MAX_BACKUPS=${MAX_BACKUPS}; export MYSQL_DB=${MYSQL_DB}; /backup.sh >> /mysql_backup.log 2>&1" > /crontab.conf
+echo "${CRON_TIME} /backup.sh >> /mysql_backup.log 2>&1" > /crontab.conf
 crontab  /crontab.conf
 echo "=> Running cron job"
 crond -f -l 8
